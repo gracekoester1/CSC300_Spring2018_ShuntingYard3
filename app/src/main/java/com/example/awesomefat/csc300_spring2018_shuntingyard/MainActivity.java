@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity
 {
-    private Queue inputQ;
+    private String inputQ;
     private OpStack opStack;
     private Queue outputQ;
 
@@ -116,9 +116,26 @@ public class MainActivity extends AppCompatActivity
         this.opStack.clearOpStack(this.outputQ);
     }
 
-    private void processOutputQueue()
+    private void processOutputQueue(outputQ)
     {
         //ultimately show the answer on the screen
+        String completedQueue = "";
+        String q = this.inputQ;
+        for(int i = 0; i < q.length(); i++) {
+            if (inputQ.indexOf(q.charAt(i)) == '+') {
+                return [i]-1 + [i]+1;
+            }
+            if (inputQ.indexOf(q.charAt(i)) == '-') {
+                return [i]-1 - [i]+1;
+            }
+            if (inputQ.indexOf(q.charAt(i)) == '/') {
+                return [i]-1 / [i]+1;
+            }
+            if (inputQ.indexOf(q.charAt(i)) == '*') {
+                return [i]-1 * [i]+1;
+            }
+        }
+
     }
     public void onClickMeButtonPressed(View v)
     {
@@ -127,5 +144,7 @@ public class MainActivity extends AppCompatActivity
         this.fillInputQ(inputET.getText().toString());
         this.processInputQ();
         this.testQ(this.outputQ);
+        System.out.println(processOutputQueue();
+
     }
 }
